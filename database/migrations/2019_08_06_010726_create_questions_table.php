@@ -14,19 +14,21 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->BigIncrements('id');
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('body');
             $table->unsignedInteger('views')->default(0);
             $table->unsignedInteger('answers')->default(0);
             $table->integer('votes')->default(0);
-            $table->unsignedInteger('best_answers_id')->nulllable();
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('best_answers_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+        // Schema::table('questions', function ($table) {
+        //     //     $table->foreign('user_id')->references('id')->on('users');
+        // });
     }
 
     /**
