@@ -1,8 +1,44 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+//(npm run watch) auto compailer
+//(npm run dev) manual
+.counters {
+    margin-right: 30px;
+    font-size: 10px;
+    text-align: center;
+
+    strong {
+        display: block;
+        font-size: 2em;
+    }
+    .vote,
+    .answer {
+        width: 60px;
+        height: 60px;
+    }
+    .status {
+        &.unanswered {
+            border: none;
+        }
+
+        &.answered {
+            border: 1px solid $green;
+            color: $green;
+        }
+
+        &.answered-accepted {
+            background: $green;
+            color: #fff;
+        }
+    }
+    .view {
+        margin-top: 10px;
+    }
+}
