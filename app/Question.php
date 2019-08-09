@@ -19,7 +19,8 @@ class Question extends Model
     }
     public function getUrlAttribute()
     {
-        return route("questions.show", $this->id);
+        return route("questions.show", $this->slug);
+
     }
     //keterangan bawah get (namafuntion) Attribute akan digunakan saat pemanggilan
     //ex : biasanya menggunakan $variabel->(namafuntion di model())
@@ -43,5 +44,10 @@ class Question extends Model
         }
 
         return "unanswered";
+    }
+
+    public function getBodyHtmlAttribute()
+    {
+        return \Parsedown::instance()->text($this->body);
     }
 }
