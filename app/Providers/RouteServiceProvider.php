@@ -19,6 +19,7 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define your route model bindings, pattern filters, etc.
+     * * Tentukan binding model rute Anda, filter pola, dll.
      *
      * @return void
      */

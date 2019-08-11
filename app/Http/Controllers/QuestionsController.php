@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\AskQuestionRequest;
 
 class QuestionsController extends Controller
@@ -17,7 +18,7 @@ class QuestionsController extends Controller
     {
 
         // \DB::enableQueryLog();
-        $questions =  Question::with('user')->latest()->paginate(10);
+        $questions =  Question::with('user')->latest()->paginate(5);
         return view('questions.index', compact('questions'))->render();
         // dd(\DB::getQuerylog());
     }
@@ -62,13 +63,18 @@ class QuestionsController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * Gate::allows
+     * Gate::denies
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
     public function edit(Question $question)
     {
-        return view("questions.edit", compact('question'));
+        if (Gate::allows('update-question', $question)){
+            return view("questions.edit", compact('question'));
+        }
+        abort(403, "Access denied");
+
         // return response()->json($question);
     }
 
@@ -94,6 +100,9 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
+        if (Gate::denies('delete-question', $question)){
+            abort(403, "Access denied");
+        }
         $question->delete();
         return redirect('/questions')->with("success", "Your question has been deleted.");
 
