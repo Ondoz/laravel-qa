@@ -15,6 +15,14 @@ class Answer extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getCreatedDateAttribute()
+    {
+        //diffForHumans
+        //format('d/m/Y');
+        return $this->created_at->diffForHumans();
+    }
+
     public function getBodyHtmlAttribute()
     {
         return \Parsedown::instance()->text($this->body);
@@ -26,7 +34,7 @@ class Answer extends Model
 
         static::created(function ($answer){
             $answer->question->increment('answers_count');
-            $answer->question->save(); 
+            $answer->question->save();
         });
         // static::created(function ($answer){
         //     echo "Answer Create \n";
