@@ -35,6 +35,7 @@
                         <div class="media-body">
                             <div class="d-flex align-items-center">
                                 <h3 class="mt-0 widthTitle">
+                                    {{-- $question->url adalah nama class di modelUser --}}
                                     <a href="{{ $question->url }}">{{ $question->title }}</a>
                                 </h3>
                                 <div class="ml-auto">
