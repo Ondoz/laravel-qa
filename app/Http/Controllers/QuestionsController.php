@@ -66,6 +66,11 @@ class QuestionsController extends Controller
     {
         $question->increment('views');
         return view('questions.show', compact('question'));
+        // $question->increment('votes');
+        /**
+         * jadi kesimpulannya increment di  laravel saat ini adalah menambahkan views yang ada k
+         * seperti view ++1
+         */
         // $question->view = $question->view + 1;
         // $question->save();
     }
