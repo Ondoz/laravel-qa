@@ -39,7 +39,6 @@
                                     <a href="{{ $question->url }}">{{ $question->title }}</a>
                                 </h3>
                                 <div class="ml-auto">
-
                                     {{--policy @if (Auth::user()->can("class_name", $foreach )) --}}
                                     {{--cukup menggunakan @can sudah bisa memanggil kelasnya policy  --}}
                                     @can("update", $question)
