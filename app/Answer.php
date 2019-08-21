@@ -39,14 +39,17 @@ class Answer extends Model
         });
 
         static::deleted(function ($answer){
-            $answer->question->decrement('answers_count');
+            $question = $answer->question;
+            $question->decrement('answers_count');
+            if ($question->best_answers_id === $answer->id) {
+                $question->best_answers_id = NULL ;
+                $question->save();
+            }
         });
+    }
 
-        // static::created(function ($answer){
-        //     echo "Answer Create \n";
-        // });
-        // static::saved(function($answer){
-        //     echo "Answer Save\n";
-        // });
+    public function getStatusAttribute()
+    {
+        return $this->id === $this->question->best_answers_id ? 'vote-accepted' : '';
     }
 }
