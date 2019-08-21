@@ -39,17 +39,18 @@ class Answer extends Model
         });
 
         static::deleted(function ($answer){
-            $question = $answer->question;
-            $question->decrement('answers_count');
-            if ($question->best_answers_id === $answer->id) {
-                $question->best_answers_id = NULL ;
-                $question->save();
-            }
+            $answer->question->decrement('answers_count');
+            //jadi semua di sederhanakan dalam datatable add_froreign_id_to_qeustions_table
+            // $question = $answer->question;
+            // if ($question->best_answers_id === $answer->id) {
+            //     $question->best_answers_id = NULL ;
+            //     $question->save();
+            // }
         });
     }
 
     public function getStatusAttribute()
     {
-        return $this->id === $this->question->best_answers_id ? 'vote-accepted' : '';
+        return $this->id === $this->question->best_answer_id ? 'vote-accepted' : '';
     }
 }
