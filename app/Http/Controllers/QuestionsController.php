@@ -27,7 +27,7 @@ class QuestionsController extends Controller
     {
 
         // \DB::enableQueryLog();
-        $questions =  Question::with('user')->latest()->paginate(5);
+        $questions =  Question::with('user')->latest()->paginate(10);
         return view('questions.index', compact('questions'))->render();
         // dd(\DB::getQuerylog());
     }
@@ -115,6 +115,17 @@ class QuestionsController extends Controller
         $question->delete();
 
         return redirect('/questions')->with("success", "Your question has been deleted.");
+
+    }
+
+    public function myquestion()
+    {
+        // $question = Question::all();
+        $question = [];
+        $question = auth()->user()->questions;
+        // return response()->json($questions);
+        $questions = collect($question);
+        return view('myquestion', compact('questions')->paginate(1));
 
     }
 }

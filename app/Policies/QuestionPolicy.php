@@ -16,9 +16,9 @@ class QuestionPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user, Question $question)
     {
-        //
+        // return $user->id === $question->user_id;
     }
 
     /**
