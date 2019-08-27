@@ -125,7 +125,7 @@ class QuestionsController extends Controller
         $question = auth()->user()->questions;
         // return response()->json($questions);
         $questions = collect($question);
-        return view('myquestion', compact('questions')->paginate(1));
+        return view('myquestion', compact('questions'));
 
     }
 }
