@@ -27,6 +27,15 @@
                                 <form id="accept-answer-{{ $answer->id }}" action="{{ route('answers.accept', $answer->id) }}" method="POST" style="display:none;">
                                     @csrf
                                 </form>
+
+                            @else
+                                @if ($answer->is_best)
+                                    <a title="The questions accepted this answer as best answer"
+                                    class="{{ $answer->status }} mt-2"
+                                        >
+                                        <i class="fas fa-check fa-2x"></i>
+                                    </a>
+                                @endif
                             @endcan
                         </div>
                         <div class="media-body">
