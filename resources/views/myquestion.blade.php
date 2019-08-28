@@ -64,10 +64,6 @@
                     </div>
                     <hr>
                    @endforeach
-<<<<<<< Updated upstream
-                   {{-- {{ $questions->links() }} --}}
-=======
->>>>>>> Stashed changes
                 </div>
             </div>
         </div>

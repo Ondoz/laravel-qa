@@ -123,11 +123,6 @@ class QuestionsController extends Controller
 
         $questions = auth()->user()->questions;
         // return response()->json($questions);
-<<<<<<< Updated upstream
-        $questions = collect($question);
-        return view('myquestion', compact('questions'));
-=======
->>>>>>> Stashed changes
 
         return view('myquestion', compact('questions'));
     }
