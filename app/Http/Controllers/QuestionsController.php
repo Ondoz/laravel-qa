@@ -11,11 +11,11 @@ class QuestionsController extends Controller
     /** only dan except.
      * only hanya yang di auth
      * except itu yang tidak di auth
-    */
+     */
 
     public function __construct()
     {
-        $this->middleware('auth',['except' => ['index','show']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -52,7 +52,7 @@ class QuestionsController extends Controller
      */
     public function store(AskQuestionRequest $request)
     {
-        $request->user()->questions()->create($request->only('title','body'));
+        $request->user()->questions()->create($request->only('title', 'body'));
         return redirect()->route('questions.index')->with("success", "Your question has been submitted");
     }
 
@@ -98,7 +98,7 @@ class QuestionsController extends Controller
     public function update(AskQuestionRequest $request, Question $question)
     {
         $this->authorize("update", $question);
-        $question->update($request->only('title','body'));
+        $question->update($request->only('title', 'body'));
 
         return redirect('/questions')->with("success", "Your question has been updated.");
     }
@@ -115,17 +115,20 @@ class QuestionsController extends Controller
         $question->delete();
 
         return redirect('/questions')->with("success", "Your question has been deleted.");
-
     }
 
     public function myquestion()
     {
         // $question = Question::all();
-        $question = [];
-        $question = auth()->user()->questions;
+
+        $questions = auth()->user()->questions;
         // return response()->json($questions);
+<<<<<<< Updated upstream
         $questions = collect($question);
         return view('myquestion', compact('questions'));
+=======
+>>>>>>> Stashed changes
 
+        return view('myquestion', compact('questions'));
     }
 }
