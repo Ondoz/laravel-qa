@@ -9,7 +9,7 @@
                     <div class="d-flex align-items-center">
                         <h2>Edit Questions Answers: <b>{{$question->title}}</b></h2>
                         <div class="ml-auto">
-                            <a href="{{$question->url}}" class="btn btn-outline-secondary"> Back to Questions</a>
+                            <a href="{{url()->previous()}}" class="btn btn-outline-secondary"> Back to Questions</a>
                         </div>
                     </div>
                 </div>

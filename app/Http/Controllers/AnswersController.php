@@ -81,4 +81,19 @@ class AnswersController extends Controller
 
        return back()->with("success", "Your question has been delete");
     }
+
+
+    public function myanswers()
+    {
+        $answers = auth()->user()->answers;
+        $data = [];
+        foreach($answers as $data_answers)
+        {
+            $get_answers = $data_answers;
+            $data = $get_answers->question;
+            $getQuestion[] = $data;
+        };
+        // return response()->json($getQuestion);
+        return view("myanswer", compact('answers', 'getQuestion'));
+    }
 }

@@ -10,7 +10,7 @@
                         <div class="d-flex align-items-center">
                             <h2 > {{$question->title}} </h2 >
                             <div class="ml-auto">
-                                <a href="{{ route('questions.index') }}" class="btn btn-outline-secondary"> Back to all Questions</a>
+                                <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">Back </a>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                                 <input type="hidden" name="vote" value="1">
                             </form>
 
-                            <span class="votes-count"> {{ $question->votes_count }} </span>
+                            <span class="votes-count"> {{ $question->votes_count}} </span>
 
                             <a title="this question is not useful" class="vote-down {{Auth::guest() ? 'off' : '' }}"
                                 onclick="event.preventDefault(); document.getElementById('down-vote-question-{{ $question->id }}').submit();"
