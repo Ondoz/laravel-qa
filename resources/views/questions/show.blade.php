@@ -83,4 +83,39 @@
 
 </div>
 @endsection
+@section('footer')
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+               crossorigin="anonymous">
+</script>
+
+<script type="text/javascript">
+
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$(".btn-submit").click(function(e){
+    e.preventDefault();
+    $up-vote-question = up-vote-question-{{ $question->id }};
+
+    $.ajax({
+        url : '',
+        method: '',
+        data:{':'},
+        dataType: 'json',
+        success: (data) => {
+            console.log(data);
+        },
+        error: (err) => {
+            console.log(err);
+        }
+    });
+});
+
+</script>
+@endsection
 
