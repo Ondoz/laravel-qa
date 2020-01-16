@@ -24,4 +24,15 @@
     </div>
 </div>
 @endsection
+@section('footer')
+    <script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
+    <script>
+    var question_body = document.getElementById("question-body");
+        CKEDITOR.replace(question_body,{
+        language:'en-gb'
+    });
+    CKEDITOR.config.allowedContent = true;
+    </script>
+@endsection
+
 

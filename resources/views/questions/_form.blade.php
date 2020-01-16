@@ -10,6 +10,7 @@
 </div>
 <div class="form-group">
     <label for="question-body">Explain you question</label>
+    {{-- <textarea id="konten" class="form-control" name="konten" rows="10" cols="50"></textarea> --}}
     <textarea name="body" id="question-body" rows="10" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }} ">{{ old('body',  $question->body ) }}</textarea>
     @if ($errors->has('body'))
         <div class="invalid-feedback">
