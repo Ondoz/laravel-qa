@@ -83,17 +83,18 @@ class AnswersController extends Controller
     }
 
 
-    public function myanswers()
+    public function myanswers(Answer $answer)
     {
-        $answers = auth()->user()->answers;
-        $data = [];
-        foreach($answers as $data_answers)
-        {
-            $get_answers = $data_answers;
-            $data = $get_answers->question;
-            $getQuestion[] = $data;
-        };
-        // return response()->json($getQuestion);
-        return view("myanswer", compact('answers', 'getQuestion'));
+        // $answers = auth()->user()->answers;
+        $answers = $answer::with('user')->where('user_id', auth()->user()->id)->latest()->paginate(10);
+        // $data = [];
+        // foreach($answers as $data_answers)
+        // {
+        //     $get_answers = $data_answers;
+        //     $data = $get_answers->question;
+        //     $getQuestion[] = $data;
+        // };
+        // return response()->json($answer);
+        return view("myanswer", compact('answers'))->render();
     }
 }

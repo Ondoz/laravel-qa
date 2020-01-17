@@ -54,17 +54,13 @@
                                         <a href=" {{ $answer->question->user->url }} " > {{ $answer->question->user->name }}</a>
                                     </p>
                                 </h3>
-                                {!! str_limit($answer->body_html, 250) !!}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
                                 <div class="ml-auto">
                                     {{--policy @if (Auth::user()->can("class_name", $foreach )) --}}
                                     {{--cukup menggunakan @can sudah bisa memanggil kelasnya policy--}}
                                     @can("update", $answer)
                                         <a href=" {{route('questions.answers.edit', [$answer->question_id, $answer->id])}} " class="btn btn-sm btn-outline-info">Edit</a>
                                     @endcan
+
                                     @can("delete", $answer)
                                     <form class="form-delete" action=" {{route('questions.answers.destroy', [$answer->question_id, $answer->id])}} " method="post">
                                         @method('DELETE')
@@ -73,8 +69,13 @@
                                     </form>
                                     @endcan
                                 </div>
+
+                                <br>
+                                {!! str_limit($answer->body_html, 250) !!}
                             </div>
-                            <div class="col-4"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8"></div>
                             <div class="col-4">
                                 <div class="float-right">
                                     <span class="text-muted">Answered {{ $answer->created_date }} </span>

@@ -121,9 +121,11 @@ class QuestionsController extends Controller
     {
         // $question = Question::all();
 
-        $questions = auth()->user()->questions;
+        // $questions = auth()->user()->questions->latest()->paginate(10);
         // return response()->json($questions);
+        $questions =  Question::with('user')->where('user_id', auth()->user()->id)->latest()->paginate(10);
+        // return view('questions.index', compact('questions'))
 
-        return view('myquestion', compact('questions'));
+        return view('myquestion', compact('questions'))->render();
     }
 }
