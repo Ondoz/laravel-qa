@@ -28,9 +28,11 @@
     <script>
     var question_body = document.getElementById("question-body");
         CKEDITOR.replace(question_body,{
-        language:'en-gb'
-    });
-    CKEDITOR.config.allowedContent = false;
+        filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",
+        filebrowserUploadMethod: 'form'
+        // filebrowserUploadUrl: "{{asset('assets/ckeditor/ck_upload.php')}}",
+        // filebrowserUploadMethod: 'form'
+    })
     </script>
 @endsection
 

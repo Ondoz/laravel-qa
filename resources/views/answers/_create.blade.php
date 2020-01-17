@@ -25,14 +25,16 @@
     </div>
 </div>
 @section('footer')
-    <script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
-    <script>
-    var answers_body = document.getElementById("answers-body");
-        CKEDITOR.replace(answers_body,{
-        language:'en-gb'
-    });
-    CKEDITOR.config.allowedContent = true;
-    </script>
+<script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
+<script>
+var question_body = document.getElementById("answers-body");
+    CKEDITOR.replace(question_body,{
+    filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",
+    filebrowserUploadMethod: 'form'
+    // filebrowserUploadUrl: "{{asset('assets/ckeditor/ck_upload.php')}}",
+    // filebrowserUploadMethod: 'form'
+})
+</script>
 @endsection
 
 

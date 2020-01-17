@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" ></script>
+    {{-- <link href="{{ asset('assets/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css')}}" rel="stylesheet"> --}}
     <link href="{{ asset('assets/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css') }}" rel="stylesheet">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -86,7 +87,7 @@
     </div>
     @yield('footer')
 
-        <script src="{{ asset('assets/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
+    <script src="{{asset('assets/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js')}}"></script>
         <script>hljs.initHighlightingOnLoad();</script>
 
 </body>

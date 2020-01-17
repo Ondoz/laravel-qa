@@ -32,5 +32,6 @@ Route::post('/questions/{question}/vote', 'VoteQuestionController');
 Route::post('/answers/{answer}/vote', 'VoteAnswerController');
 
 Route::get('/myanswer', 'AnswersController@myanswers')->name('myanswers');
+Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 
 Auth::routes();
