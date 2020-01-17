@@ -59,7 +59,6 @@
                                 <br>
                                 <small class="text-muted">{{ $question->created_date}}</small>
                             </p>
-                            {{ str_limit($question->body, 250) }}
                         </div>
                     </div>
                     <hr>

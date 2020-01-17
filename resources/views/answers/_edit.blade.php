@@ -14,12 +14,12 @@
                     </div>
                 </div>
                 <div class="card-body">
-                   <form action=" {{ route('questions.answers.update', [$question->id, $answer->id])}} " method="post">
+                   <form action=" {{ route('questions.answers.update', [$question->id, $answer->id])}} " method="post" >
                         @csrf
                         @method('PATCH')
                         <div class="form-group">
                             <label for="question-body">Explain you question</label>
-                            <textarea name="body" id="question-body" rows="10" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }} ">{{ old('body',  $answer->body ) }}</textarea>
+                            <textarea name="body" id="answers-body" rows="10" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }} ">{{ old('body',  $answer->body ) }}</textarea>
                             @if ($errors->has('body'))
                                 <div class="invalid-feedback">
                                     <strong> {{$errors->first('body')}} </strong>
@@ -36,4 +36,18 @@
     </div>
 </div>
 @endsection
+@section('footer')
+<script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
+<script>
+var question_body = document.getElementById("answers-body");
+    CKEDITOR.replace(question_body,{
+    filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",
+    filebrowserUploadMethod: 'form'
+    // filebrowserUploadUrl: "{{asset('assets/ckeditor/ck_upload.php')}}",
+    // filebrowserUploadMethod: 'form'
+})
+</script>
+@endsection
+
+
 
